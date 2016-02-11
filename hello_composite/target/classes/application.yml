@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: hello-composite
+server:
+  port: 7777
