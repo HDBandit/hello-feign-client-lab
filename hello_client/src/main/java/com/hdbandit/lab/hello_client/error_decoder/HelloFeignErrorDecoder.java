@@ -20,7 +20,7 @@ public class HelloFeignErrorDecoder implements ErrorDecoder {
 	@Override
 	public ServiceException decode(String methodKey, Response response) {
 		try {
-			return exceptionResolverByCode.getException(1001);
+			return exceptionResolverByCode.getException(10001);
 		} catch (InstantiationException e) {
 			throw new IllegalStateException("Unexpected error occurs getting error code", e);
 		} catch (IllegalAccessException e) {
