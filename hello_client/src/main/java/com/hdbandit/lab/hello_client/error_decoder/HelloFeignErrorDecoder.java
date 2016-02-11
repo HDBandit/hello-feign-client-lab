@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import com.hdbandit.lab.hello_interface.exception.ExceptionResolverByCode;
-import com.hdbandit.lab.hello_interface.exception.LanguageNotFoundServiceException;
 import com.hdbandit.lab.hello_interface.exception.ServiceException;
 
 import feign.Response;
@@ -20,13 +19,13 @@ public class HelloFeignErrorDecoder implements ErrorDecoder {
 
 	@Override
 	public ServiceException decode(String methodKey, Response response) {
-		boolean r = true;
-		if (r) {
-			return new LanguageNotFoundServiceException();
-		} else {
-			return new ServiceException();
+		try {
+			return exceptionResolverByCode.getException(1001);
+		} catch (InstantiationException e) {
+			throw new IllegalStateException("Unexpected error occurs getting error code", e);
+		} catch (IllegalAccessException e) {
+			throw new IllegalStateException("Unexpected error occurs getting error code", e);
 		}
-		
 	}
 
 
